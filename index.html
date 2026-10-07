@@ -1,0 +1,578 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Vinay Kumar · Biodata</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..700;1,6..96,400..600&family=Manrope:wght@400;500;600;700;800&family=Noto+Serif+Telugu:wght@500;600&display=swap">
+<style>
+/* Layout: white page, photo reel running across the top, name block, then folding detail panels. */
+:root{
+  --bg:#ffffff;
+  --ink:#0e1424;
+  --muted:#4b5568;
+  --line:#e2e8f3;
+  --soft:#f4f7fd;
+  --blue:#1f4fd1;     /* royal blue, main accent */
+  --sky:#5b9bf5;
+  --deep:#0b2a7a;
+  --error:#c62a32;    /* wrong PIN + liked heart only */
+  --display:"Bodoni Moda", "Didot", Georgia, serif;
+  --body:"Manrope", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --telugu:"Noto Serif Telugu", serif;
+  --ease:cubic-bezier(.2,.8,.2,1);
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--bg);color:var(--ink);font:500 16px/1.65 var(--body);-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;overflow-x:hidden}
+img{max-width:100%;display:block}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer;padding:0}
+:focus-visible{outline:2px solid var(--blue);outline-offset:3px;border-radius:4px}
+body.locked{overflow:hidden}
+
+/* ---------- Password gate ---------- */
+.gate{position:fixed;inset:0;z-index:50;display:grid;place-items:center;background:var(--bg);padding:24px 16px;transition:opacity .7s var(--ease),visibility .7s}
+.gate.gone{opacity:0;visibility:hidden}
+.gate-inner{display:grid;justify-items:center;gap:18px;text-align:center;animation:rise .9s var(--ease) both}
+.gate .om{font-family:var(--telugu);font-weight:600;color:var(--blue);font-size:22px;letter-spacing:.02em}
+.gate h1{font:italic 600 clamp(38px,7.5vw,58px)/1.05 var(--display);margin:0}
+.gate p{margin:0;color:var(--muted);font-size:13px;font-weight:600;letter-spacing:.14em;text-transform:uppercase}
+.pin{display:flex;gap:12px;margin-top:8px}
+.pin input{width:54px;height:64px;text-align:center;font:600 28px var(--display);border:1.5px solid var(--line);border-radius:12px;background:var(--soft);color:var(--ink);transition:border-color .2s,transform .2s}
+.pin input:focus{outline:none;border-color:var(--ink);transform:translateY(-2px)}
+.pin.bad{animation:shake .45s}
+.pin.bad input{border-color:var(--error)}
+.pin.ok input{border-color:var(--sky);background:color-mix(in srgb,var(--sky) 12%,#fff)}
+.gate .hint{min-height:20px;font-size:14px;font-weight:600;color:var(--error);letter-spacing:0;text-transform:none}
+@keyframes shake{20%,60%{transform:translateX(-8px)}40%,80%{transform:translateX(8px)}}
+
+/* ---------- Top photo reel ---------- */
+.reel{padding-top:28px;overflow:hidden;position:relative}
+.reel::before,.reel::after{content:"";position:absolute;top:0;bottom:0;width:8vw;z-index:2;pointer-events:none}
+.reel::before{left:0;background:linear-gradient(90deg,var(--bg),transparent)}
+.reel::after{right:0;background:linear-gradient(-90deg,var(--bg),transparent)}
+.track{display:flex;gap:16px;width:max-content;animation:run 60s linear infinite}
+.reel:hover .track{animation-play-state:paused}
+.track.rev{animation-direction:reverse;animation-duration:75s;margin-top:16px}
+@keyframes run{to{transform:translateX(calc(-50% - 8px))}}
+.shot{flex:none;height:clamp(240px,40vh,400px);aspect-ratio:3/4;border-radius:18px;overflow:hidden;position:relative;background:var(--soft);transition:transform .5s var(--ease),box-shadow .5s var(--ease)}
+.shot img{width:100%;height:100%;object-fit:cover;transition:transform 1.2s var(--ease)}
+.shot:hover{transform:translateY(-6px) rotate(-1deg);box-shadow:0 18px 40px -18px rgba(14,20,36,.45)}
+.shot:hover img{transform:scale(1.07)}
+.shot .tag{position:absolute;left:12px;bottom:12px;font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#fff;background:rgba(0,0,0,.35);backdrop-filter:blur(6px);padding:6px 10px;border-radius:99px;opacity:0;transform:translateY(6px);transition:.35s var(--ease)}
+.shot:hover .tag{opacity:1;transform:none}
+.track.rev .shot{height:clamp(150px,22vh,220px)}
+
+/* ---------- Name block ---------- */
+main{max-width:880px;margin:0 auto;padding-inline:16px;padding-block:56px 80px}
+.hero{display:grid;grid-template-columns:minmax(0,1fr);justify-items:center;text-align:center;gap:14px}
+.shubham{font-family:var(--telugu);font-weight:600;color:var(--blue);font-size:20px}
+.hero h2{font:600 clamp(44px,9.5vw,100px)/1 var(--display);margin:0;letter-spacing:-.02em;text-wrap:balance}
+.hero h2 em{font-style:italic;color:var(--blue)}
+.hero h2 .ch{display:inline-block;opacity:0;transform:translateY(.4em);animation:rise .8s var(--ease) forwards}
+.role{color:var(--muted);font-size:17px;font-weight:500;margin:0}
+.chips{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin-top:6px}
+.chip{border:1px solid #d0daea;border-radius:99px;padding:7px 15px;font-size:14px;font-weight:600;animation:rise .7s var(--ease) both}
+.view-all{margin-top:14px;display:inline-flex;align-items:center;gap:10px;padding:12px 22px;border-radius:99px;background:var(--ink);color:var(--bg);font-weight:700;font-size:15px;transition:transform .3s var(--ease),background .3s}
+.view-all:hover{transform:translateY(-2px);background:var(--blue)}
+.divider{display:flex;align-items:center;gap:14px;margin:64px 0 28px;color:var(--sky)}
+.divider::before,.divider::after{content:"";flex:1;height:1px;background:var(--line)}
+.divider span{font:italic 600 26px var(--display);color:var(--ink)}
+
+/* ---------- Collapsible details ---------- */
+.panels{display:grid;gap:12px}
+.panel{border:1px solid var(--line);border-radius:18px;background:var(--bg);overflow:hidden;transition:border-color .3s,box-shadow .4s var(--ease);opacity:0;transform:translateY(18px)}
+.panel.in{opacity:1;transform:none;transition:opacity .7s var(--ease),transform .7s var(--ease),border-color .3s,box-shadow .4s}
+.panel.open{border-color:#c3d2ec;box-shadow:0 20px 50px -30px rgba(14,20,36,.35)}
+.panel-head{width:100%;display:flex;align-items:center;gap:16px;padding:20px 22px;text-align:left}
+.panel-head .ico{width:42px;height:42px;flex:none;border-radius:12px;background:var(--soft);display:grid;place-items:center;color:var(--blue);transition:background .3s,color .3s}
+.panel.open .ico{background:var(--blue);color:#fff}
+.panel-head .t{flex:1;min-width:0}
+.panel-head strong{display:block;font:600 24px/1.2 var(--display)}
+.panel-head small{color:var(--muted);font-size:14px;font-weight:500}
+.plus{width:28px;height:28px;position:relative;flex:none}
+.plus::before,.plus::after{content:"";position:absolute;left:50%;top:50%;width:14px;height:1.5px;background:var(--ink);transform:translate(-50%,-50%);transition:transform .45s var(--ease)}
+.plus::after{transform:translate(-50%,-50%) rotate(90deg)}
+.panel.open .plus::after{transform:translate(-50%,-50%) rotate(0)}
+.panel-body{display:grid;grid-template-rows:0fr;transition:grid-template-rows .55s var(--ease)}
+.panel.open .panel-body{grid-template-rows:1fr}
+.panel-body>div{overflow:hidden;min-height:0}
+dl{margin:0;padding:0 22px 22px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 28px}
+dl .row{padding:12px 0;border-top:1px dashed var(--line);opacity:0;transform:translateY(8px);transition:opacity .4s,transform .4s var(--ease)}
+.panel.open dl .row{opacity:1;transform:none}
+dt{font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+dd{margin:3px 0 0;font-weight:700;font-size:16px;overflow-wrap:anywhere}
+.copy{margin-left:8px;font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--blue);border-bottom:1px solid currentColor}
+dd a{color:inherit;text-decoration:none;border-bottom:1px solid var(--line)}
+footer{text-align:center;color:var(--muted);font-size:14px;font-weight:500;margin-top:56px}
+footer .shubham{display:block;font-size:22px;margin-bottom:4px}
+
+/* ---------- Instagram-style gallery ---------- */
+.ig{position:fixed;inset:0;z-index:30;background:rgba(255,255,255,.6);backdrop-filter:blur(14px);display:grid;place-items:center;padding:20px 16px;opacity:0;visibility:hidden;transition:opacity .4s var(--ease),visibility .4s}
+.ig.show{opacity:1;visibility:visible}
+.ig-card{width:min(935px,100%);height:min(92vh,100%);background:var(--bg);border:1px solid var(--line);border-radius:20px;box-shadow:0 40px 90px -40px rgba(0,0,0,.45);display:flex;flex-direction:column;overflow:hidden;transform:translateY(30px) scale(.97);transition:transform .5s var(--ease)}
+.ig.show .ig-card{transform:none}
+.ig-bar{display:flex;align-items:center;justify-content:space-between;padding:12px 16px;border-bottom:1px solid var(--line);font-weight:700}
+.ig-bar .auto{font-size:13px;font-weight:600;color:var(--muted);display:flex;align-items:center;gap:6px}
+.ig-bar .auto i{width:7px;height:7px;border-radius:50%;background:var(--blue);animation:pulse 1.4s infinite}
+.ig-bar .auto.off i{animation:none;background:var(--line)}
+@keyframes pulse{50%{opacity:.25}}
+.x{width:36px;height:36px;border-radius:50%;display:grid;place-items:center;transition:background .2s}
+.x:hover{background:var(--soft)}
+.ig-scroll{flex:1;overflow-y:auto;overscroll-behavior:contain}
+.profile{display:grid;grid-template-columns:auto 1fr;gap:12px 32px;align-items:center;padding:28px clamp(16px,5vw,56px) 24px}
+.ring{width:clamp(78px,16vw,150px);aspect-ratio:1;border-radius:50%;padding:3px;background:conic-gradient(from 200deg,var(--sky),var(--blue),var(--deep),var(--sky));animation:spin 8s linear infinite}
+.ring img{width:100%;height:100%;object-fit:cover;border-radius:50%;border:3px solid var(--bg);animation:spin 8s linear infinite reverse}
+@keyframes spin{to{transform:rotate(1turn)}}
+.pinfo{min-width:0}
+.handle{font-size:21px;font-weight:700;margin:0 0 10px}
+.stats{display:flex;gap:22px;flex-wrap:wrap;font-size:15px;margin-bottom:10px}
+.stats b{font-weight:800}
+.bio{font-size:15px;line-height:1.55}
+.bio b{display:block}
+.tabs{display:flex;justify-content:center;gap:40px;border-top:1px solid var(--line);font-size:13px;font-weight:700;letter-spacing:.12em;text-transform:uppercase}
+.tabs span{padding:14px 0;border-top:1px solid var(--ink);margin-top:-1px}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:3px;padding-bottom:3px}
+.cell{aspect-ratio:3/4;position:relative;overflow:hidden;background:var(--soft);opacity:0;transform:scale(.92)}
+.ig.show .cell{animation:pop .6s var(--ease) forwards;animation-delay:calc(var(--i) * 55ms + 150ms)}
+@keyframes pop{to{opacity:1;transform:none}}
+.cell img{width:100%;height:100%;object-fit:cover;transition:transform .6s var(--ease)}
+.cell::after{content:"";position:absolute;inset:0;background:rgba(0,0,0,0);transition:background .3s}
+.cell:hover img{transform:scale(1.05)}
+.cell:hover::after{background:rgba(0,0,0,.18)}
+
+/* ---------- Single post ---------- */
+.post{position:fixed;inset:0;z-index:40;background:rgba(8,12,24,.84);display:grid;place-items:center;padding:20px 16px;opacity:0;visibility:hidden;transition:opacity .35s,visibility .35s}
+.post.show{opacity:1;visibility:visible}
+.post-card{width:min(470px,100%);max-height:100%;background:var(--bg);border-radius:14px;overflow:hidden;display:flex;flex-direction:column;transform:scale(.9);transition:transform .45s var(--ease)}
+.post.show .post-card{transform:none}
+.post-head{display:flex;align-items:center;gap:10px;padding:10px 12px;font-size:15px;font-weight:700}
+.post-head img{width:32px;height:32px;border-radius:50%;object-fit:cover}
+.post-head .loc{display:block;font-weight:500;font-size:13px;color:var(--muted)}
+.post-head .x{margin-left:auto}
+.media{position:relative;background:#000;aspect-ratio:3/4;max-height:68vh;overflow:hidden;user-select:none}
+.media img{width:100%;height:100%;object-fit:contain;animation:fade .45s var(--ease)}
+@keyframes fade{from{opacity:0;transform:scale(1.03)}}
+.burst{position:absolute;left:50%;top:50%;width:96px;height:96px;margin:-48px;color:#fff;opacity:0;pointer-events:none;filter:drop-shadow(0 4px 14px rgba(0,0,0,.35))}
+.burst.go{animation:burst .9s var(--ease)}
+@keyframes burst{0%{opacity:0;transform:scale(.2)}20%{opacity:1;transform:scale(1.15)}35%{transform:scale(.95)}70%{opacity:1;transform:scale(1)}100%{opacity:0;transform:scale(1.4) translateY(-30px)}}
+.nav{position:absolute;top:50%;transform:translateY(-50%);width:32px;height:32px;border-radius:50%;background:rgba(255,255,255,.85);display:grid;place-items:center;color:#111;transition:transform .2s}
+.nav:hover{transform:translateY(-50%) scale(1.1)}
+.nav.prev{left:10px}.nav.next{right:10px}
+.dots{position:absolute;bottom:10px;left:0;right:0;display:flex;justify-content:center;gap:4px}
+.dots i{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.45);transition:background .3s,transform .3s}
+.dots i.on{background:#fff;transform:scale(1.2)}
+.actions{display:flex;align-items:center;gap:14px;padding:10px 12px 4px}
+.actions button{display:grid;place-items:center;transition:transform .2s}
+.actions button:active{transform:scale(.85)}
+.actions .save{margin-left:auto}
+.heart.on svg{fill:var(--error);stroke:var(--error);animation:beat .4s var(--ease)}
+@keyframes beat{50%{transform:scale(1.3)}}
+.caption{padding:2px 12px 14px;font-size:15px}
+.caption .when{display:block;color:var(--muted);font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;margin-top:4px}
+
+@keyframes rise{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+
+/* ----- Favourite colour picker ----- */
+.hue{position:fixed;left:50%;bottom:20px;z-index:25;width:min(380px,calc(100% - 32px));background:var(--bg);border:1px solid var(--line);border-radius:20px;padding:18px 18px 16px;box-shadow:0 24px 60px -24px rgba(14,20,36,.4);transform:translate(-50%,140%);opacity:0;visibility:hidden;transition:transform .6s var(--ease),opacity .4s,visibility .6s}
+.hue.show{transform:translate(-50%,0);opacity:1;visibility:visible}
+.hue h3{margin:0 28px 2px 0;font:italic 600 22px/1.2 var(--display)}
+.hue p{margin:0 0 14px;color:var(--muted);font-size:14px}
+.hue .x{position:absolute;top:12px;right:12px;width:30px;height:30px;border-radius:50%;display:grid;place-items:center;color:var(--muted)}
+.hue .x:hover{background:var(--soft);color:var(--ink)}
+.swatches{display:grid;grid-template-columns:repeat(4,1fr);gap:12px 8px}
+.sw{display:grid;justify-items:center;gap:6px;font-size:12px;font-weight:600;color:var(--muted)}
+.sw i{width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,var(--c2),var(--c1) 55%,var(--c3));box-shadow:0 0 0 3px var(--bg),0 0 0 4px transparent;transition:transform .25s var(--ease),box-shadow .25s}
+.sw:hover i{transform:scale(1.08)}
+.sw[aria-pressed="true"]{color:var(--ink)}
+.sw[aria-pressed="true"] i{box-shadow:0 0 0 3px var(--bg),0 0 0 5px var(--c1)}
+.hue .thanks{margin:14px 0 0;min-height:22px;font-weight:700;color:var(--blue);text-align:center}
+.hue-btn{position:fixed;right:16px;bottom:16px;z-index:24;width:46px;height:46px;border-radius:50%;background:var(--bg);border:1px solid var(--line);box-shadow:0 10px 30px -12px rgba(14,20,36,.35);display:grid;place-items:center;color:var(--blue);opacity:0;visibility:hidden;transform:scale(.6);transition:transform .4s var(--ease),opacity .3s,visibility .4s}
+.hue-btn.show{opacity:1;visibility:visible;transform:none}
+.hue-btn:hover{transform:rotate(-12deg) scale(1.06)}
+
+@media (max-width:640px){
+  dl{grid-template-columns:1fr}
+  .profile{gap:10px 18px;padding-top:20px}
+  .stats{gap:14px}
+  .ig{padding:0}
+  .ig-card{height:100%;border-radius:0;border:0}
+  .pin input{width:48px;height:58px}
+  .panel-head{padding:16px}
+  dl{padding:0 16px 16px}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+  .track{animation:none}
+  .reel{overflow-x:auto}
+}
+</style>
+</head>
+<body class="locked">
+
+<!-- Password gate -->
+<div class="gate" id="gate">
+  <div class="gate-inner">
+    <h1>Vinay Kumar</h1>
+    <p>Enter the 4-digit code</p>
+    <form class="pin" id="pin" autocomplete="off">
+      <input id="d1" inputmode="numeric" maxlength="1" aria-label="Digit 1">
+      <input id="d2" inputmode="numeric" maxlength="1" aria-label="Digit 2">
+      <input id="d3" inputmode="numeric" maxlength="1" aria-label="Digit 3">
+      <input id="d4" inputmode="numeric" maxlength="1" aria-label="Digit 4">
+    </form>
+    <p class="hint" id="hint"></p>
+  </div>
+</div>
+
+<!-- Running photo reel -->
+<section class="reel" aria-label="Photos">
+  <div class="track" id="trackA"></div>
+  <div class="track rev" id="trackB"></div>
+</section>
+
+<main>
+  <header class="hero">
+    <h2 id="name">S. Vinay <em>Kumar</em></h2>
+    <p class="role">Data Engineer at Deloitte · Bangalore</p>
+    <div class="chips">
+      <span class="chip" style="animation-delay:.9s">27 years</span>
+      <span class="chip" style="animation-delay:1s">B.Tech, Mechanical</span>
+      <span class="chip" style="animation-delay:1.1s">Telugu · Balija</span>
+      <span class="chip" style="animation-delay:1.2s">From Dharmavaram</span>
+    </div>
+    <button class="view-all" id="viewAll">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+      View all photos
+    </button>
+  </header>
+
+  <div class="divider"><span>Biodata</span></div>
+  <div class="panels" id="panels"></div>
+
+  <footer>
+    Tap any photo above to open the gallery.
+  </footer>
+</main>
+
+<!-- Instagram-style gallery -->
+<div class="ig" id="ig" role="dialog" aria-modal="true" aria-label="Photo gallery">
+  <div class="ig-card">
+    <div class="ig-bar">
+      <span>vinay.kumar</span>
+      <button class="auto" id="autoBtn" title="Toggle auto-scroll"><i></i><span>Auto-scroll on</span></button>
+      <button class="x" id="igClose" aria-label="Close gallery"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+    </div>
+    <div class="ig-scroll" id="igScroll">
+      <div class="profile">
+        <div class="ring"><img src="photos/p09.jpg" alt=""></div>
+        <div class="pinfo">
+          <p class="handle">vinay.kumar</p>
+          <div class="stats"><span><b id="postCount">13</b> posts</span><span><b>Telugu</b></span><span><b>Bangalore</b></span></div>
+          <div class="bio"><b>S. Vinay Kumar</b>Data Engineer @ Deloitte<br>Chill &amp; easy-going · Dharmavaram ↔ Bangalore</div>
+        </div>
+      </div>
+      <div class="tabs"><span>Posts</span></div>
+      <div class="grid" id="grid"></div>
+    </div>
+  </div>
+</div>
+
+<!-- Single post -->
+<div class="post" id="post" role="dialog" aria-modal="true" aria-label="Photo">
+  <div class="post-card">
+    <div class="post-head">
+      <img src="photos/p09.jpg" alt="">
+      <div>vinay.kumar<span class="loc">Dharmavaram · Bangalore</span></div>
+      <button class="x" id="postClose" aria-label="Close photo"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+    </div>
+    <div class="media" id="media">
+      <img id="postImg" alt="Photo of Vinay">
+      <svg class="burst" id="burst" viewBox="0 0 24 24" fill="currentColor"><path d="M12 21s-7.5-4.6-9.5-9.2C1 8.3 3.3 5 6.7 5c2 0 3.3 1 4.3 2.4h2C14 6 15.3 5 17.3 5 20.7 5 23 8.3 21.5 11.8 19.5 16.4 12 21 12 21z"/></svg>
+      <button class="nav prev" id="prev" aria-label="Previous photo"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 18l-6-6 6-6"/></svg></button>
+      <button class="nav next" id="next" aria-label="Next photo"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 18l6-6-6-6"/></svg></button>
+      <div class="dots" id="dots"></div>
+    </div>
+    <div class="actions">
+      <button class="heart" id="heart" aria-label="Like"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 21s-7.5-4.6-9.5-9.2C1 8.3 3.3 5 6.7 5c2 0 3.3 1 4.3 2.4h2C14 6 15.3 5 17.3 5 20.7 5 23 8.3 21.5 11.8 19.5 16.4 12 21 12 21z"/></svg></button>
+      <a id="igLink" href="#" target="_blank" rel="noopener" aria-label="Open Instagram" hidden><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg></a>
+      <span class="save" id="counter" style="font-size:13px;color:var(--muted)"></span>
+    </div>
+    <div class="caption"><b>vinay.kumar</b> <span id="cap"></span><span class="when">Double-tap the photo to like</span></div>
+  </div>
+</div>
+
+<!-- Favourite colour picker -->
+<div class="hue" id="hue" role="dialog" aria-labelledby="hueTitle">
+  <button class="x" id="hueClose" aria-label="Close"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+  <h3 id="hueTitle">What's your favourite colour?</h3>
+  <p>Pick one and the page will wear it.</p>
+  <div class="swatches" id="swatches"></div>
+  <p class="thanks" id="hueThanks" aria-live="polite"></p>
+</div>
+<button class="hue-btn" id="hueBtn" aria-label="Change colour"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M12 3a9 9 0 1 0 0 18c1.1 0 1.8-.8 1.8-1.8 0-.5-.2-.9-.5-1.2-.3-.3-.5-.8-.5-1.2 0-1 .8-1.8 1.8-1.8H17a4 4 0 0 0 4-4C21 6.6 17 3 12 3z"/><circle cx="7.5" cy="11" r="1.2" fill="currentColor"/><circle cx="10" cy="7" r="1.2" fill="currentColor"/><circle cx="14.5" cy="7" r="1.2" fill="currentColor"/></svg></button>
+
+<script>
+/* ===== Edit here ===== */
+const PASSWORD = "5678";
+const INSTAGRAM_URL = "";   // e.g. "https://instagram.com/yourhandle" – shows an Instagram button on each photo
+const PHOTOS = Array.from({length:13}, (_, i) => `photos/p${String(i+1).padStart(2,"0")}.jpg`);
+const ASK_COLOUR_AFTER = 20;  // seconds after unlocking before asking their favourite colour
+// [name, main accent, light shade, deep shade]
+const COLOURS = [
+  ["Blue","#1f4fd1","#5b9bf5","#0b2a7a"],["Maroon","#9b1c31","#e0697b","#4f0b17"],
+  ["Emerald","#0f7a4f","#4cc38a","#063d27"],["Teal","#0f6f7a","#45b8c4","#063840"],
+  ["Purple","#6b2fc9","#a98af0","#34126b"],["Pink","#c2185b","#f06aa0","#5e0b2c"],
+  ["Saffron","#c2410c","#f59e5b","#5c1d05"],["Gold","#8a6100","#e0b44a","#4a3300"]
+];
+const CAPTIONS = ["Good vibes only","Weekend mode","Easy days","Smiles","Take it easy","Wanderlust","Sunday","Golden hour","Just chilling","Simple things","Out and about","Happy place","Keep it simple"];
+
+const DETAILS = [
+  {title:"Personal Details", sub:"Who he is", icon:"user", rows:[
+    ["Name","S. Vinay Kumar"],["Age","27 Years"],["Date of Birth","14 August 2001"],
+    ["Caste","Balija"],["Mother Tongue","Telugu"],["Languages Known","Telugu, Hindi, English"],
+    ["Food Preference","Non-Vegetarian"],["Nature","Chill & Easy-going"],
+    ["Interests","Fitness"],["Drinking","Teetotaler"],
+    ["Place of Birth","Dharmavaram"],["Native Place","Dharmavaram, Lonikota"]]},
+  {title:"Education & Career", sub:"Data Engineer, Deloitte", icon:"work", rows:[
+    ["Qualification","B.Tech – Mechanical Engineering"],["College","SRIT, Anantapur"],
+    ["Profession","Software Engineer – Data Engineer"],["Company","Deloitte"],
+    ["Work Location","Bangalore"],["Annual Income","₹16 LPA"]]},
+  {title:"Family Details", sub:"Parents & brother", icon:"home", rows:[
+    ["Father","Ramakrishna – Flower Merchant"],["Mother","Varalakshmi – Homemaker"],
+    ["Sibling","Younger Brother – Vikram, Software Developer, Single"]]},
+  {title:"Horoscope Details", sub:"Rashi & gothram", icon:"star", rows:[
+    ["Rashi","Uttara Ashadha"],["Gothram","Panna Gothram"],["Birth Place","Dharmavaram"]]},
+  {title:"Contact Details", sub:"Get in touch", icon:"phone", rows:[
+    ["Contact Person","Vinay Kumar"],["Phone","7095519249","tel:+917095519249"],
+    ["Email","sungadivinaykumar@gmail.com","mailto:sungadivinaykumar@gmail.com"],
+    ["Location","Dharmavaram, Lonikota"]]}
+];
+/* ===================== */
+
+const ICONS = {
+  user:'<circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/>',
+  work:'<rect x="3" y="7" width="18" height="13" rx="2"/><path d="M9 7V5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2M3 13h18"/>',
+  home:'<path d="M3 11l9-7 9 7v9a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1z"/>',
+  star:'<path d="M12 3l2.6 5.6 6.1.7-4.5 4.2 1.2 6L12 16.6 6.6 19.5l1.2-6L3.3 9.3l6.1-.7z"/>',
+  phone:'<path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/>'
+};
+const $ = s => document.querySelector(s);
+const esc = s => s.replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+
+/* ----- Gate ----- */
+const gate = $("#gate"), pin = $("#pin"), boxes = [...pin.querySelectorAll("input")];
+function unlock(){
+  try{ sessionStorage.setItem("vk-ok","1") }catch(e){}
+  gate.classList.add("gone"); document.body.classList.remove("locked"); startIntro();
+}
+let ok = false; try{ ok = sessionStorage.getItem("vk-ok")==="1" }catch(e){}
+if(ok){ gate.classList.add("gone"); document.body.classList.remove("locked"); }
+else setTimeout(()=>boxes[0].focus(), 300);
+boxes.forEach((b,i)=>{
+  b.addEventListener("input", ()=>{
+    b.value = b.value.replace(/\D/g,"").slice(-1);
+    if(b.value && i<3) boxes[i+1].focus();
+    check();
+  });
+  b.addEventListener("keydown", e=>{ if(e.key==="Backspace" && !b.value && i>0) boxes[i-1].focus(); });
+  b.addEventListener("paste", e=>{
+    const t=(e.clipboardData.getData("text")||"").replace(/\D/g,"").slice(0,4);
+    if(!t) return; e.preventDefault(); t.split("").forEach((d,k)=>boxes[k].value=d); check();
+  });
+});
+function check(){
+  const v = boxes.map(b=>b.value).join("");
+  if(v.length<4) { $("#hint").textContent=""; return; }
+  if(v===PASSWORD){ pin.classList.add("ok"); setTimeout(unlock, 450); }
+  else{
+    pin.classList.remove("bad"); void pin.offsetWidth; pin.classList.add("bad");
+    $("#hint").textContent="That code isn't right. Try again.";
+    setTimeout(()=>{ boxes.forEach(b=>b.value=""); boxes[0].focus(); }, 450);
+  }
+}
+pin.addEventListener("submit", e=>e.preventDefault());
+
+/* ----- Reel ----- */
+function fillTrack(el, list){
+  const html = list.map(src=>{
+    const i = PHOTOS.indexOf(src);
+    return `<button class="shot" data-i="${i}" aria-label="Open gallery"><img src="${src}" alt="" loading="lazy"><span class="tag">View gallery</span></button>`;
+  }).join("");
+  el.innerHTML = html + html; // doubled for a seamless loop
+}
+fillTrack($("#trackA"), PHOTOS);
+fillTrack($("#trackB"), [...PHOTOS].reverse());
+document.querySelectorAll(".shot").forEach(s=>s.addEventListener("click", ()=>openGallery()));
+
+/* ----- Name animation ----- */
+function splitName(){
+  const h = $("#name"); let n = 0;
+  h.querySelectorAll(":scope, em").forEach(node=>{
+    [...node.childNodes].forEach(c=>{
+      if(c.nodeType!==3) return;
+      const frag = document.createDocumentFragment();
+      [...c.textContent].forEach(ch=>{
+        if(ch===" "){ frag.appendChild(document.createTextNode(" ")); return; }
+        const s=document.createElement("span"); s.className="ch"; s.textContent = ch;
+        s.style.animationDelay = (0.25 + n++*0.045)+"s"; frag.appendChild(s);
+      });
+      c.replaceWith(frag);
+    });
+  });
+}
+let introDone=false;
+function startIntro(){ if(introDone) return; introDone=true; splitName(); }
+if(ok) startIntro();
+
+/* ----- Panels ----- */
+$("#panels").innerHTML = DETAILS.map((d,k)=>`
+  <section class="panel" style="transition-delay:${k*90}ms">
+    <button class="panel-head" aria-expanded="false">
+      <span class="ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round">${ICONS[d.icon]}</svg></span>
+      <span class="t"><strong>${d.title}</strong><small>${d.sub}</small></span>
+      <span class="plus"></span>
+    </button>
+    <div class="panel-body"><div><dl>
+      ${d.rows.map((r,j)=>`<div class="row" style="transition-delay:${120+j*45}ms"><dt>${r[0]}</dt><dd>${
+        r[2] ? `<a href="${r[2]}">${esc(r[1])}</a><button class="copy" data-v="${esc(r[1])}">Copy</button>` : esc(r[1])
+      }</dd></div>`).join("")}
+    </dl></div></div>
+  </section>`).join("");
+document.querySelectorAll(".panel-head").forEach(h=>h.addEventListener("click", ()=>{
+  const p=h.parentElement, open=!p.classList.contains("open");
+  p.classList.toggle("open", open); h.setAttribute("aria-expanded", open);
+}));
+document.querySelectorAll(".copy").forEach(b=>b.addEventListener("click", ()=>{
+  navigator.clipboard?.writeText(b.dataset.v).then(()=>{ b.textContent="Copied"; setTimeout(()=>b.textContent="Copy",1500); }).catch(()=>{});
+}));
+// first panel open by default
+document.querySelector(".panel").classList.add("open");
+document.querySelector(".panel-head").setAttribute("aria-expanded","true");
+// reveal panels as they scroll in (visible immediately if no observer)
+const panels=[...document.querySelectorAll(".panel")];
+if("IntersectionObserver" in window){
+  const io=new IntersectionObserver(es=>es.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add("in"); io.unobserve(e.target);} }),{threshold:.1});
+  panels.forEach(p=>io.observe(p));
+} else panels.forEach(p=>p.classList.add("in"));
+
+/* ----- Gallery (auto-scroll) ----- */
+const ig=$("#ig"), scroller=$("#igScroll"), autoBtn=$("#autoBtn");
+$("#grid").innerHTML = PHOTOS.map((src,i)=>`<button class="cell" style="--i:${i}" data-i="${i}" aria-label="Open photo ${i+1}"><img src="${src}" alt="" loading="lazy"></button>`).join("");
+$("#postCount").textContent = PHOTOS.length;
+document.querySelectorAll(".cell").forEach(c=>c.addEventListener("click", ()=>openPost(+c.dataset.i)));
+$("#viewAll").addEventListener("click", ()=>openGallery());
+$("#igClose").addEventListener("click", closeGallery);
+ig.addEventListener("click", e=>{ if(e.target===ig) closeGallery(); });
+
+const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+let autoOn = !reduce, raf=0, dir=1, pausedUntil=0, pos=0;
+function setAuto(on){ autoOn=on; autoBtn.classList.toggle("off",!on); autoBtn.querySelector("span").textContent = on ? "Auto-scroll on" : "Auto-scroll off"; }
+setAuto(autoOn);
+autoBtn.addEventListener("click", ()=>setAuto(!autoOn));
+function tick(t){
+  raf=requestAnimationFrame(tick);
+  if(!autoOn || performance.now()<pausedUntil || $("#post").classList.contains("show")) { pos=scroller.scrollTop; return; }
+  const max = scroller.scrollHeight - scroller.clientHeight;
+  if(max<=0) return;
+  pos += 0.6*dir;
+  if(pos>=max){ pos=max; dir=-1; pausedUntil=performance.now()+1500; }
+  if(pos<=0){ pos=0; dir=1; pausedUntil=performance.now()+1500; }
+  scroller.scrollTop = pos;
+}
+// any manual interaction pauses auto-scroll briefly
+["wheel","touchstart","pointerdown","keydown"].forEach(ev=>scroller.addEventListener(ev, ()=>{ pausedUntil=performance.now()+3000; }, {passive:true}));
+function openGallery(){
+  ig.classList.add("show"); document.body.style.overflow="hidden";
+  scroller.scrollTop=0; pos=0; dir=1; pausedUntil=performance.now()+1400;
+  cancelAnimationFrame(raf); raf=requestAnimationFrame(tick);
+  setTimeout(()=>$("#igClose").focus(), 50);
+}
+function closeGallery(){ ig.classList.remove("show"); document.body.style.overflow=""; cancelAnimationFrame(raf); }
+
+/* ----- Single post ----- */
+const post=$("#post"); let cur=0;
+$("#dots").innerHTML = PHOTOS.map(()=>"<i></i>").join("");
+if(INSTAGRAM_URL){ const a=$("#igLink"); a.href=INSTAGRAM_URL; a.hidden=false; }
+const liked=new Set();
+function show(i){
+  cur=(i+PHOTOS.length)%PHOTOS.length;
+  const img=$("#postImg"); img.style.animation="none"; void img.offsetWidth; img.style.animation="";
+  img.src=PHOTOS[cur];
+  $("#cap").textContent = CAPTIONS[cur] || "";
+  $("#counter").textContent = `${cur+1} / ${PHOTOS.length}`;
+  [...$("#dots").children].forEach((d,k)=>d.classList.toggle("on",k===cur));
+  $("#heart").classList.toggle("on", liked.has(cur));
+}
+function openPost(i){ show(i); post.classList.add("show"); }
+function closePost(){ post.classList.remove("show"); }
+$("#postClose").addEventListener("click", closePost);
+post.addEventListener("click", e=>{ if(e.target===post) closePost(); });
+$("#prev").addEventListener("click", ()=>show(cur-1));
+$("#next").addEventListener("click", ()=>show(cur+1));
+function like(force){
+  const on = force ?? !liked.has(cur);
+  on ? liked.add(cur) : liked.delete(cur);
+  const h=$("#heart"); h.classList.remove("on"); void h.offsetWidth; h.classList.toggle("on", on);
+}
+$("#heart").addEventListener("click", ()=>like());
+let lastTap=0;
+$("#media").addEventListener("click", e=>{
+  if(e.target.closest(".nav")) return;
+  const now=Date.now();
+  if(now-lastTap<320){ like(true); const b=$("#burst"); b.classList.remove("go"); void b.offsetWidth; b.classList.add("go"); }
+  lastTap=now;
+});
+// swipe on phones
+let sx=null;
+$("#media").addEventListener("touchstart", e=>{ sx=e.touches[0].clientX; }, {passive:true});
+$("#media").addEventListener("touchend", e=>{
+  if(sx===null) return; const dx=e.changedTouches[0].clientX-sx; sx=null;
+  if(Math.abs(dx)>45) show(cur + (dx<0?1:-1));
+});
+document.addEventListener("keydown", e=>{
+  if(post.classList.contains("show")){
+    if(e.key==="Escape") closePost();
+    if(e.key==="ArrowRight") show(cur+1);
+    if(e.key==="ArrowLeft") show(cur-1);
+  } else if(ig.classList.contains("show") && e.key==="Escape") closeGallery();
+});
+/* ----- Favourite colour ----- */
+const hue = $("#hue"), hueBtn = $("#hueBtn"), swatches = $("#swatches");
+let picked = null; try{ picked = localStorage.getItem("vk-colour") }catch(e){}
+function applyColour(name){
+  const c = COLOURS.find(c => c[0]===name); if(!c) return;
+  const r = document.documentElement.style;
+  r.setProperty("--blue", c[1]); r.setProperty("--sky", c[2]); r.setProperty("--deep", c[3]);
+  swatches.querySelectorAll(".sw").forEach(b => b.setAttribute("aria-pressed", b.dataset.c===name));
+}
+swatches.innerHTML = COLOURS.map(([n,a,b,d]) =>
+  `<button class="sw" data-c="${n}" aria-pressed="false" style="--c1:${a};--c2:${b};--c3:${d}"><i></i>${n}</button>`).join("");
+if(picked) applyColour(picked);
+function openHue(){ $("#hueThanks").textContent=""; hue.classList.add("show"); hueBtn.classList.remove("show"); }
+function closeHue(){ hue.classList.remove("show"); hueBtn.classList.add("show"); }
+swatches.addEventListener("click", e=>{
+  const b = e.target.closest(".sw"); if(!b) return;
+  applyColour(b.dataset.c);
+  try{ localStorage.setItem("vk-colour", b.dataset.c) }catch(e){}
+  $("#hueThanks").textContent = `${b.dataset.c} it is ✓`;
+  clearTimeout(hue._t); hue._t = setTimeout(closeHue, 1600);
+});
+$("#hueClose").addEventListener("click", closeHue);
+hueBtn.addEventListener("click", openHue);
+document.addEventListener("keydown", e=>{ if(e.key==="Escape" && hue.classList.contains("show")) closeHue(); });
+// ask once, a while after unlocking, and never on top of the gallery or a photo
+function askLater(){
+  if(picked){ hueBtn.classList.add("show"); return; }
+  setTimeout(function tryAsk(){
+    if(ig.classList.contains("show") || post.classList.contains("show")) return setTimeout(tryAsk, 3000);
+    openHue();
+  }, ASK_COLOUR_AFTER*1000);
+}
+if(gate.classList.contains("gone")) askLater();
+else new MutationObserver((m,o)=>{ if(gate.classList.contains("gone")){ o.disconnect(); askLater(); } }).observe(gate,{attributes:true});
+</script>
+</body>
+</html>
